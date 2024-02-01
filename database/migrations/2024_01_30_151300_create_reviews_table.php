@@ -18,10 +18,6 @@ return new class extends Migration
             $table->unsignedInteger('mark');
             $table->text('comment')->nullable();
             $table->timestamps();
-
-            // Foreign keys
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 
