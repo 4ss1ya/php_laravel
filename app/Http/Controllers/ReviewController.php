@@ -13,23 +13,23 @@ class ReviewController extends Controller
     {
         // Validation rules
         $rules = [
-            'User_id' => 'required|exists:users,id',
-            'Course_id' => 'required|exists:courses,id',
-            'Mark' => 'required|integer|min:1|max:5',
-            'Comment' => 'nullable|string',
+            'user_id' => 'required|exists:users,id',
+            'course_id' => 'required|exists:courses,id',
+            'mark' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string',
         ];
 
         // Custom error messages
         $messages = [
-            'User_id.required' => 'User ID is required.',
-            'User_id.exists' => 'User not found.',
-            'Course_id.required' => 'Course ID is required.',
-            'Course_id.exists' => 'Course not found.',
-            'Mark.required' => 'Mark is required.',
-            'Mark.integer' => 'Mark must be an integer.',
-            'Mark.min' => 'Mark must be at least 1.',
-            'Mark.max' => 'Mark must not exceed 5.',
-            'Comment.string' => 'Comment must be a string.',
+            'user_id.required' => 'User ID is required.',
+            'user_id.exists' => 'User not found.',
+            'course_id.required' => 'Course ID is required.',
+            'course_id.exists' => 'Course not found.',
+            'mark.required' => 'Mark is required.',
+            'mark.integer' => 'Mark must be an integer.',
+            'mark.min' => 'Mark must be at least 1.',
+            'mark.max' => 'Mark must not exceed 5.',
+            'comment.string' => 'Comment must be a string.',
         ];
 
         // Validate the request data
@@ -42,10 +42,10 @@ class ReviewController extends Controller
 
         // If validation passes, proceed to create the review
         $review = new Review();
-        $review->User_id = $request->User_id;
-        $review->Course_id = $request->Course_id;
-        $review->Mark = $request->Mark;
-        $review->Comment = $request->Comment;
+        $review->user_id = $request->user_id;
+        $review->course_id = $request->course_id;
+        $review->mark = $request->mark;
+        $review->comment = $request->comment;
         $review->save();
 
         return $review;
@@ -72,16 +72,16 @@ class ReviewController extends Controller
     {
         // Validation rules
         $rules = [
-            'Mark' => 'integer|min:1|max:5',
-            'Comment' => 'nullable|string',
+            'mark' => 'integer|min:1|max:5',
+            'comment' => 'nullable|string',
         ];
 
         // Custom error messages
         $messages = [
-            'Mark.integer' => 'Mark must be an integer.',
-            'Mark.min' => 'Mark must be at least 1.',
-            'Mark.max' => 'Mark must not exceed 5.',
-            'Comment.string' => 'Comment must be a string.',
+            'mark.integer' => 'Mark must be an integer.',
+            'mark.min' => 'Mark must be at least 1.',
+            'mark.max' => 'Mark must not exceed 5.',
+            'comment.string' => 'Comment must be a string.',
         ];
 
         // Validate the request data
@@ -101,8 +101,8 @@ class ReviewController extends Controller
         }
 
         // Update review attributes with request data
-        $review->Mark = $request->input('Mark', $review->Mark);
-        $review->Comment = $request->input('Comment', $review->Comment);
+        $review->mark = $request->input('mark', $review->mark);
+        $review->comment = $request->input('comment', $review->comment);
         $review->save();
 
         return $review;

@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//user
+Route::post('/createUser', [UserController::class, 'create']);
+Route::get('/showUser/{id}', [UserController::class, 'show']);
+Route::get('/userList', [UserController::class, 'userList']);
+Route::put('/updateUser/{id}', [UserController::class, 'update']);
+Route::delete('/deleteUser/{id}', [UserController::class, 'delete']);
+
+//owner
+Route::post('/createOwner', [OwnerController::class, 'create']);
+Route::get('/showOwner/{id}', [OwnerController::class, 'show']);
+Route::get('/ownerList', [OwnerController::class, 'ownerList']);
+Route::put('/updateOwner/{id}', [OwnerController::class, 'update']);
+Route::delete('/deleteOwner/{id}', [OwnerController::class, 'delete']);
+
+//course
+Route::post('/createCourse', [CourseController::class, 'create']);
+Route::get('/showCourse/{id}', [CourseController::class, 'item']);
+Route::get('/courseList', [CourseController::class, 'CourseList']);
+Route::put('/updateCourse/{id}', [CourseController::class, 'update']);
+Route::delete('/deleteCourse/{id}', [CourseController::class, 'delete']);
+
+//quiz
+Route::post('/createQuiz', [QuizController::class, 'create']);
+Route::get('/showQuiz/{id}', [QuizController::class, 'show']);
+Route::get('/quizList', [QuizController::class, 'quizList']);
+Route::put('/updateQuiz/{id}', [QuizController::class, 'update']);
+Route::delete('/deleteQuiz/{id}', [QuizController::class, 'delete']);
+
+//review
+Route::post('/createReview', [ReviewController::class, 'create']);
+Route::get('/showReview/{id}', [ReviewController::class, 'show']);
+Route::get('/reviewList', [ReviewController::class, 'reviewList']);
+Route::put('/updateReview/{id}', [ReviewController::class, 'update']);
+Route::delete('/deleteReview/{id}', [ReviewController::class, 'delete']);

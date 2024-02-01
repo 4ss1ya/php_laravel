@@ -13,23 +13,23 @@ class QuizController extends Controller
     {
         // Validation rules
         $rules = [
-            'User_id' => 'required|exists:users,id',
-            'Course_id' => 'required|exists:courses,id',
-            'Question' => 'required|string|max:255',
-            'Answer' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+            'course_id' => 'required|exists:courses,id',
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
         ];
 
         // Custom error messages
         $messages = [
-            'User_id.required' => 'User ID is required.',
-            'User_id.exists' => 'User not found.',
-            'Course_id.required' => 'Course ID is required.',
-            'Course_id.exists' => 'Course not found.',
-            'Question.required' => 'Question is required.',
-            'Question.string' => 'Question must be a string.',
-            'Question.max' => 'Question must not exceed 255 characters.',
-            'Answer.required' => 'Answer is required.',
-            'Answer.string' => 'Answer must be a string.',
+            'user_id.required' => 'User ID is required.',
+            'user_id.exists' => 'User not found.',
+            'course_id.required' => 'Course ID is required.',
+            'course_id.exists' => 'Course not found.',
+            'question.required' => 'Question is required.',
+            'question.string' => 'Question must be a string.',
+            'question.max' => 'Question must not exceed 255 characters.',
+            'answer.required' => 'Answer is required.',
+            'answer.string' => 'Answer must be a string.',
         ];
 
         // Validate the request data
@@ -72,15 +72,15 @@ class QuizController extends Controller
     {
         // Validation rules
         $rules = [
-            'Question' => 'string|max:255',
-            'Answer' => 'string',
+            'question' => 'string|max:255',
+            'answer' => 'string',
         ];
 
         // Custom error messages
         $messages = [
-            'Question.string' => 'Question must be a string.',
-            'Question.max' => 'Question must not exceed 255 characters.',
-            'Answer.string' => 'Answer must be a string.',
+            'question.string' => 'Question must be a string.',
+            'question.max' => 'Question must not exceed 255 characters.',
+            'answer.string' => 'Answer must be a string.',
         ];
 
         // Validate the request data
@@ -100,8 +100,8 @@ class QuizController extends Controller
         }
 
         // Update quiz attributes with request data
-        $quiz->Question = $request->input('Question', $quiz->Question);
-        $quiz->Answer = $request->input('Answer', $quiz->Answer);
+        $quiz->question = $request->input('Question', $quiz->question);
+        $quiz->answer = $request->input('Answer', $quiz->answer);
         $quiz->save();
 
         return $quiz;

@@ -13,19 +13,19 @@ class UserController extends Controller
     {
         // Validation rules
         $rules = [
-            'User_name' => 'required|string|max:255',
-            'Email' => 'required|email|unique:users',
-            'Password' => 'required|string|min:6',
+            'user_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6',
         ];
 
         // Custom error messages
         $messages = [
-            'User_name.required' => 'User name is required.',
-            'Email.required' => 'Email is required.',
-            'Email.email' => 'Invalid email format.',
-            'Email.unique' => 'Email is already taken.',
-            'Password.required' => 'Password is required.',
-            'Password.min' => 'Password must be at least 6 characters.',
+            'user_name.required' => 'User name is required.',
+            'email.required' => 'Email is required.',
+            'email.email' => 'Invalid email format.',
+            'email.unique' => 'Email is already taken.',
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password must be at least 6 characters.',
         ];
 
         // Validate the request data
@@ -38,9 +38,9 @@ class UserController extends Controller
 
         // If validation passes, proceed to create the user
         $user = new User();
-        $user->User_name = $request->User_name;
-        $user->Email = $request->Email;
-        $user->Password = bcrypt($request->Password); // Hash the password for security
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password); // Hash the password for security
         $user->save();
 
         return $user;
@@ -67,19 +67,19 @@ class UserController extends Controller
     {
         // Validation rules
         $rules = [
-            'User_name' => 'string|max:255',
-            'Email' => 'email|unique:users',
-            'Password' => 'string|min:6',
+            'user_name' => 'string|max:255',
+            'email' => 'email|unique:users',
+            'password' => 'string|min:6',
         ];
 
         // Custom error messages
         $messages = [
-            'User_name.string' => 'User name must be a string.',
-            'User_name.max' => 'User name must not exceed 255 characters.',
-            'Email.email' => 'Invalid email format.',
-            'Email.unique' => 'Email is already taken.',
-            'Password.string' => 'Password must be a string.',
-            'Password.min' => 'Password must be at least 6 characters.',
+            'user_name.string' => 'User name must be a string.',
+            'user_name.max' => 'User name must not exceed 255 characters.',
+            'email.email' => 'Invalid email format.',
+            'email.unique' => 'Email is already taken.',
+            'password.string' => 'Password must be a string.',
+            'password.min' => 'Password must be at least 6 characters.',
         ];
 
         // Validate the request data
@@ -99,11 +99,11 @@ class UserController extends Controller
         }
 
         // Update user attributes with request data
-        $user->User_name = $request->input('User_name', $user->User_name);
-        $user->Email = $request->input('Email', $user->Email);
+        $user->user_name = $request->input('user_name', $user->user_name);
+        $user->email = $request->input('email', $user->email);
         
         if ($request->has('Password')) {
-            $user->Password = bcrypt($request->Password); // Hash the updated password
+            $user->password = bcrypt($request->password); // Hash the updated password
         }
 
         $user->save();

@@ -32,7 +32,6 @@ class CourseController extends Controller
     // Check if validation fails
     if ($validator->fails()) {
         return response()->json(['errors' => $validator->errors()], 400);
-        // You can customize the response based on your application needs
     }
 
     // If validation passes, proceed to create the course
@@ -93,7 +92,6 @@ class CourseController extends Controller
     // Check if validation fails
     if ($validator->fails()) {
         return response()->json(['errors' => $validator->errors()], 400);
-        // You can customize the response based on your application needs
     }
 
     // Find the course by ID

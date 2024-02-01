@@ -13,20 +13,20 @@ class OwnerController extends Controller
     {
         // Validation rules
         $rules = [
-            'User_id' => 'required|exists:users,id',
-            'User_full_name' => 'required|string|max:255',
-            'Course_id' => 'required|exists:courses,id',
+            'user_id' => 'required|exists:users,id',
+            'user_full_name' => 'required|string|max:255',
+            'course_id' => 'required|exists:courses,id',
         ];
 
         // Custom error messages
         $messages = [
-            'User_id.required' => 'User ID is required.',
-            'User_id.exists' => 'User not found.',
-            'User_full_name.required' => 'User full name is required.',
-            'User_full_name.string' => 'User full name must be a string.',
-            'User_full_name.max' => 'User full name must not exceed 255 characters.',
-            'Course_id.required' => 'Course ID is required.',
-            'Course_id.exists' => 'Course not found.',
+            'user_id.required' => 'User ID is required.',
+            'user_id.exists' => 'User not found.',
+            'user_full_name.required' => 'User full name is required.',
+            'user_full_name.string' => 'User full name must be a string.',
+            'user_full_name.max' => 'User full name must not exceed 255 characters.',
+            'course_id.required' => 'Course ID is required.',
+            'course_id.exists' => 'Course not found.',
         ];
 
         // Validate the request data
@@ -68,15 +68,15 @@ class OwnerController extends Controller
     {
         // Validation rules
         $rules = [
-            'User_full_name' => 'string|max:255',
-            'Course_id' => 'exists:courses,id',
+            'user_full_name' => 'string|max:255',
+            'course_id' => 'exists:courses,id',
         ];
 
         // Custom error messages
         $messages = [
-            'User_full_name.string' => 'User full name must be a string.',
-            'User_full_name.max' => 'User full name must not exceed 255 characters.',
-            'Course_id.exists' => 'Course not found.',
+            'user_full_name.string' => 'User full name must be a string.',
+            'user_full_name.max' => 'User full name must not exceed 255 characters.',
+            'course_id.exists' => 'Course not found.',
         ];
 
         // Validate the request data
@@ -96,8 +96,8 @@ class OwnerController extends Controller
         }
 
         // Update owner attributes with request data
-        $owner->User_full_name = $request->input('User_full_name', $owner->User_full_name);
-        $owner->Course_id = $request->input('Course_id', $owner->Course_id);
+        $owner->User_full_name = $request->input('user_full_name', $owner->user_full_name);
+        $owner->Course_id = $request->input('course_id', $owner->course_id);
         $owner->save();
 
         return $owner;
