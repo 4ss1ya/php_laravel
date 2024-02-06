@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Owner;
+use App\Models\UserCourse;
 use Illuminate\Support\Facades\Validator;
 
-class OwnerController extends Controller
+class UserCourseController extends Controller
 {
     // Create
     public function create(Request $request)
@@ -14,7 +15,6 @@ class OwnerController extends Controller
         // Validation rules
         $rules = [
             'user_id' => 'required|exists:users,id',
-            'user_full_name' => 'required|string|max:255',
             'course_id' => 'required|exists:courses,id',
         ];
 
@@ -22,9 +22,6 @@ class OwnerController extends Controller
         $messages = [
             'user_id.required' => 'User ID is required.',
             'user_id.exists' => 'User not found.',
-            'user_full_name.required' => 'User full name is required.',
-            'user_full_name.string' => 'User full name must be a string.',
-            'user_full_name.max' => 'User full name must not exceed 255 characters.',
             'course_id.required' => 'Course ID is required.',
             'course_id.exists' => 'Course not found.',
         ];
@@ -38,29 +35,28 @@ class OwnerController extends Controller
         }
 
         // If validation passes, proceed to create the owner
-        $owner = new Owner();
-        $owner->User_id = $request->User_id;
-        $owner->User_full_name = $request->User_full_name;
-        $owner->Course_id = $request->Course_id;
-        $owner->save();
+        $user_course = new UserCourse();
+        $user_course ->user_id = $request->user_id;
+        $user_course ->course_id = $request->course_id;
+        $user_course ->save();
 
-        return $owner;
+        return $user_course;
     }
 
     // Read
     public function show($id)
     {
-        $owner = Owner::find($id);
-        if (!$owner) {
-            return response()->json(['message' => 'Owner not found'], 404);
+        $user_courses  = UserCourse::find($id);
+        if (!$user_courses ) {
+            return response()->json(['message' => 'User courses not found'], 404);
         }
 
-        return $owner;
+        return $user_courses ;
     }
 
-    public function ownerList()
+    public function list()
     {
-        return Owner::all();
+        return UserCourse::all();
     }
 
     // Update
@@ -68,14 +64,11 @@ class OwnerController extends Controller
     {
         // Validation rules
         $rules = [
-            'user_full_name' => 'string|max:255',
             'course_id' => 'exists:courses,id',
         ];
 
         // Custom error messages
         $messages = [
-            'user_full_name.string' => 'User full name must be a string.',
-            'user_full_name.max' => 'User full name must not exceed 255 characters.',
             'course_id.exists' => 'Course not found.',
         ];
 
@@ -88,31 +81,30 @@ class OwnerController extends Controller
         }
 
         // Find the owner by ID
-        $owner = Owner::find($id);
+        $user_courses = UserCourse::find($id);
 
         // Check if the owner exists
-        if (!$owner) {
-            return response()->json(['message' => 'Owner not found'], 404);
+        if (!$user_courses ) {
+            return response()->json(['message' => 'User course not found'], 404);
         }
 
         // Update owner attributes with request data
-        $owner->User_full_name = $request->input('user_full_name', $owner->user_full_name);
-        $owner->Course_id = $request->input('course_id', $owner->course_id);
-        $owner->save();
+        $user_courses->course_id = $request->input('course_id', $user_courses ->course_id);
+        $user_courses->save();
 
-        return $owner;
+        return $user_courses;
     }
 
     // Delete
     public function delete($id)
     {
-        $owner = Owner::find($id);
+        $user_course = UserCourse::find($id);
 
-        if (!$owner) {
+        if (!$user_course) {
             return response()->json(['message' => 'Owner not found'], 404);
         }
 
-        $owner->delete();
+        $user_course->delete();
 
         return response()->json(['message' => 'Owner deleted successfully']);
     }

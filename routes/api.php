@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ReviewController;
@@ -25,12 +25,12 @@ Route::get('/userList', [UserController::class, 'userList']);
 Route::put('/updateUser/{id}', [UserController::class, 'update']);
 Route::delete('/deleteUser/{id}', [UserController::class, 'delete']);
 
-//owner
-Route::post('/createOwner', [OwnerController::class, 'create']);
-Route::get('/showOwner/{id}', [OwnerController::class, 'show']);
-Route::get('/ownerList', [OwnerController::class, 'ownerList']);
-Route::put('/updateOwner/{id}', [OwnerController::class, 'update']);
-Route::delete('/deleteOwner/{id}', [OwnerController::class, 'delete']);
+//user courses
+Route::post('/createUserCourse', [UserCourseController::class, 'create']);
+Route::get('/showUserCourse/{id}', [UserCourseController::class, 'show']);
+Route::get('/UserCourseList', [UserCourseController::class, 'List']);
+Route::put('/updateUserCourse/{id}', [UserCourseController::class, 'update']);
+Route::delete('/deleteUserCourse/{id}', [UserCourseController::class, 'delete']);
 
 //course
 Route::post('/createCourse', [CourseController::class, 'create']);
