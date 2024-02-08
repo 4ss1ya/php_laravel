@@ -42,10 +42,10 @@ class QuizController extends Controller
 
         // If validation passes, proceed to create the quiz
         $quiz = new Quiz();
-        $quiz->User_id = $request->User_id;
-        $quiz->Course_id = $request->Course_id;
-        $quiz->Question = $request->Question;
-        $quiz->Answer = $request->Answer;
+        $quiz->user_id = $request->user_id;
+        $quiz->course_id = $request->course_id;
+        $quiz->question = $request->question;
+        $quiz->answer = $request->answer;
         $quiz->save();
 
         return $quiz;
@@ -72,6 +72,8 @@ class QuizController extends Controller
     {
         // Validation rules
         $rules = [
+            'user_id' => 'required|exists:users,id',
+            'course_id' => 'required|exists:courses,id',
             'question' => 'string|max:255',
             'answer' => 'string',
         ];
@@ -100,8 +102,8 @@ class QuizController extends Controller
         }
 
         // Update quiz attributes with request data
-        $quiz->question = $request->input('Question', $quiz->question);
-        $quiz->answer = $request->input('Answer', $quiz->answer);
+        $quiz->question = $request->question;
+        $quiz->answer = $request->answer;
         $quiz->save();
 
         return $quiz;

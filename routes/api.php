@@ -30,7 +30,7 @@ Route::post('/createUserCourse', [UserCourseController::class, 'create']);
 Route::get('/showUserCourse/{id}', [UserCourseController::class, 'show']);
 Route::get('/UserCourseList', [UserCourseController::class, 'List']);
 Route::put('/updateUserCourse/{id}', [UserCourseController::class, 'update']);
-Route::delete('/deleteUserCourse/{id}', [UserCourseController::class, 'delete']);
+Route::delete('/deleteUserCourse/{id}', [UserCourseController::class, 'delete']); 
 
 //course
 Route::post('/createCourse', [CourseController::class, 'create']);
