@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\UserCourse;
 
 class UserCoursesTableSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class UserCoursesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        UserCourse::factory(3)->create();
     }
 }
