@@ -103,9 +103,9 @@ class CourseController extends Controller
     }
 
     // Update course attributes with request data
-    $course->course_name = $request->input('course_name', $course->course_name);
-    $course->price = $request->input('price', $course->price);
-    $course->description = $request->input('description', $course->description);
+    $course->course_name = $request->course_name;
+    $course->price = $request->price;
+    $course->description = $request->description;
     $course->save();
 
     return $course;

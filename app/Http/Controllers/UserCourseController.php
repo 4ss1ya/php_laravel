@@ -89,7 +89,7 @@ class UserCourseController extends Controller
         }
 
         // Update owner attributes with request data
-        $user_courses->course_id = $request->input('course_id', $user_courses ->course_id);
+        $user_courses->course_id = $request->course_id;
         $user_courses->save();
 
         return $user_courses;

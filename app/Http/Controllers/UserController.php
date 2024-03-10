@@ -44,6 +44,7 @@ class UserController extends Controller
         $user->save();
 
         return $user;
+        //return response()->json(['user' => $user], 201);
     }
 
     // Read
@@ -99,8 +100,8 @@ class UserController extends Controller
         }
 
         // Update user attributes with request data
-        $user->user_name = $request->input('user_name', $user->user_name);
-        $user->email = $request->input('email', $user->email);
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
         
         if ($request->has('Password')) {
             $user->password = bcrypt($request->password); // Hash the updated password

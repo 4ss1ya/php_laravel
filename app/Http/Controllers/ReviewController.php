@@ -101,8 +101,8 @@ class ReviewController extends Controller
         }
 
         // Update review attributes with request data
-        $review->mark = $request->input('mark', $review->mark);
-        $review->comment = $request->input('comment', $review->comment);
+        $review->mark = $request->mark;
+        $review->comment = $request->comment;
         $review->save();
 
         return $review;

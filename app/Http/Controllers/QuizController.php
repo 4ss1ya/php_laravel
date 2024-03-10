@@ -11,7 +11,6 @@ class QuizController extends Controller
     // Create
     public function create(Request $request)
     {
-        // Validation rules
         $rules = [
             'user_id' => 'required|exists:users,id',
             'course_id' => 'required|exists:courses,id',
@@ -19,7 +18,6 @@ class QuizController extends Controller
             'answer' => 'required|string',
         ];
 
-        // Custom error messages
         $messages = [
             'user_id.required' => 'User ID is required.',
             'user_id.exists' => 'User not found.',
